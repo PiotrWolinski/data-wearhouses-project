@@ -7,15 +7,6 @@ class ClientGenerator:
 
     START_ID = 0
 
-    def __init__(self, clients_amount=100_000, start_id=None):
-        self._current_id = start_id if start_id else self.START_ID
-        self._clients_amount = clients_amount
-        self._clients = []
-        self._names = []
-        self._surnames = []
-        self.read_names()
-        self.read_surnames()
-
     class Client:
 
         def __init__(self, id, name, surname, show_id=False):
@@ -28,6 +19,15 @@ class ClientGenerator:
             id = f'{self.id if self._show_id else ""}'
             s = f'{self.name}|{self.surname}'
             return s if id == '' else f'{id}|{s}'
+
+    def __init__(self, clients_amount=100_000, start_id=None):
+        self._current_id = start_id if start_id else self.START_ID
+        self._clients_amount = clients_amount
+        self._clients = []
+        self._names = []
+        self._surnames = []
+        self.read_names()
+        self.read_surnames()
 
     def read_names(self):
         names_df = pandas.read_csv("names.csv")

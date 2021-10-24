@@ -1,6 +1,7 @@
 import os
 from generators.departments import DepartmentGenerator
 from generators.clients import ClientGenerator
+from generators.consultations import ConsultationGenerator
 
 class MainGenerator:
 
@@ -10,6 +11,7 @@ class MainGenerator:
     def init_generators(self):
         self.generators['departments'] = DepartmentGenerator()
         self.generators['clients'] = ClientGenerator()
+        self.generators['consultations'] = ConsultationGenerator()
         
     def start_generators(self):
         for generator in self.generators.values():
