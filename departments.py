@@ -12,7 +12,8 @@ class Department:
         self.call_center = call_center
 
     def __str__(self):
-        
+        s = f'{self.street} | {self.building_number} | {self.city} | {self.postal_code} | {self.consultants} | {self.call_center}'
+        return s
 
 class DepartmentGenerator:
 
@@ -24,9 +25,9 @@ class DepartmentGenerator:
     CALL_CENTER_RATE = 0.9
 
     def __init__(self, departments_amount=15, start_id=None):
-        _current_id = start_id if start_id else self.START_ID
-        _departments_amount = departments_amount
-        _departments = []
+        self._current_id = start_id if start_id else self.START_ID
+        self._departments_amount = departments_amount
+        self._departments = []
 
     @property
     def current_id(self):
@@ -42,7 +43,7 @@ class DepartmentGenerator:
             street = random.choice(self.STREETS)
             building_number = random.randint(*self.BUILDING_NUMBER_RANGE)
             city = random.choice(self.CITIES)
-            postal_code = f'{random.randint(9)}{random.randint(9)}-{random.randint(9)}{random.randint(9)}{random.randint(9)}'
+            postal_code = f'{random.randint(0,9)}{random.randint(0,9)}-{random.randint(0,9)}{random.randint(0,9)}{random.randint(0,9)}'
             consultants_amount = random.randint(*self.CONSULTANTS_RANGE)
             call_center = True if random.uniform(0, 1) < self.CALL_CENTER_RATE else False
 
@@ -54,4 +55,14 @@ class DepartmentGenerator:
                                                 consultants=consultants_amount,
                                                 call_center=call_center))
 
-        
+    def print(self):
+        for deparment in self._departments:
+            print(deparment)
+
+    def save_to_bulk(self):
+        pass
+
+department_generator = DepartmentGenerator()
+department_generator.generate()
+
+department_generator.print()
