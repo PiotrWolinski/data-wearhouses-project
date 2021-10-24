@@ -1,6 +1,6 @@
 import os
-from departments import DepartmentGenerator
-from clients import ClientGenerator
+from generators.departments import DepartmentGenerator
+from generators.clients import ClientGenerator
 
 class MainGenerator:
 
