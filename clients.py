@@ -18,14 +18,16 @@ class ClientGenerator:
 
     class Client:
 
-        def __init__(self, id, name, surname):
+        def __init__(self, id, name, surname, show_id=False):
             self.id = id
             self.name = name
             self.surname = surname
+            self._show_id = show_id
         
         def __str__(self):
+            id = f'{self.id if self._show_id else ""}'
             s = f'{self.name}|{self.surname}'
-            return s
+            return s if id == '' else f'{id}|{s}'
 
     def read_names(self):
         names_df = pandas.read_csv("names.csv")
