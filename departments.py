@@ -1,19 +1,6 @@
 import random
-
-class Department:
-
-    def __init__(self, id, street, building_number, city, postal_code, consultants, call_center):
-        self.id = id
-        self.street = street
-        self.building_number = building_number
-        self.city = city
-        self.postal_code = postal_code
-        self.consultants = consultants
-        self.call_center = call_center
-
-    def __str__(self):
-        s = f'{self.street} | {self.building_number} | {self.city} | {self.postal_code} | {self.consultants} | {self.call_center}'
-        return s
+import codecs
+import pathlib
 
 class DepartmentGenerator:
 
@@ -23,6 +10,22 @@ class DepartmentGenerator:
     STREETS = ['Marszałkowska', 'Grunwaldzka', 'Krótka', 'Mickiewicza', 'Jasna', 'Ciemna', 'Wesoła', 'Słoneczna', 'Deszczowa', 'Długa', 'Bałtycka', 'Ratajczaka']
     CONSULTANTS_RANGE = (40, 60)
     CALL_CENTER_RATE = 0.9
+    class Department:
+
+        def __init__(self, id, street, building_number, city, postal_code, consultants, call_center, show_id=False):
+            self.id = id
+            self.street = street
+            self.building_number = building_number
+            self.city = city
+            self.postal_code = postal_code
+            self.consultants = consultants
+            self.call_center = call_center
+            self._show_id = show_id
+
+        def __str__(self):
+            id = f'{self.id if self._show_id else ""}'
+            s = f'{self.street}|{self.building_number}|{self.city}|{self.postal_code}|{self.consultants}|{self.call_center}'
+            return s if id == '' else f'{id}|{s}'
 
     def __init__(self, departments_amount=15, start_id=None):
         self._current_id = start_id if start_id else self.START_ID
@@ -47,7 +50,7 @@ class DepartmentGenerator:
             consultants_amount = random.randint(*self.CONSULTANTS_RANGE)
             call_center = True if random.uniform(0, 1) < self.CALL_CENTER_RATE else False
 
-            self._departments.append(Department(id=current_id,
+            self._departments.append(self.Department(id=current_id,
                                                 street=street,
                                                 building_number=building_number,
                                                 city=city,
@@ -60,9 +63,8 @@ class DepartmentGenerator:
             print(deparment)
 
     def save_to_bulk(self):
-        pass
+        current_path = pathlib.Path().resolve()
 
-department_generator = DepartmentGenerator()
-department_generator.generate()
-
-department_generator.print()
+        with codecs.open(f'{current_path}/bulks/departments.bulk', 'w', 'utf-8') as file:
+            for department in self._departments:
+                file.write(f'{department}\n')
