@@ -1,0 +1,56 @@
+CREATE DATABASE Talk2Us
+GO
+
+USE Talk2Us
+GO
+
+CREATE TABLE Rating
+(
+    ID_Rating INTEGER IDENTITY(1,1) PRIMARY KEY,
+    FK_Survey INTEGER FOREIGN KEY REFERENCES Survey,
+    FK_Rating_type varchar(30) FOREIGN KEY REFERENCES Rating_type,
+    Value INTEGER
+)
+GO
+
+CREATE TABLE Rating_type
+(
+
+)
+GO
+
+CREATE TABLE Survey
+(
+
+)
+GO
+
+CREATE TABLE Consultation
+(
+
+)
+GO
+
+CREATE TABLE Client
+(
+
+)
+GO
+
+CREATE TABLE Consultant
+(
+
+)
+GO
+
+CREATE TABLE Department
+(
+
+)
+GO
+
+CREATE TABLE Benefit
+(
+
+)
+GO
