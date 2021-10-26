@@ -6,7 +6,7 @@ GO
 
 CREATE TABLE Rating_type
 (
-    Rating_name varchar(30) PRIMARY KEY,
+    Rating_type_name varchar(30) PRIMARY KEY,
 )
 GO
 

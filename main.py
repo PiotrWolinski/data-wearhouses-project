@@ -2,6 +2,8 @@ import os
 from generators.departments import DepartmentGenerator
 from generators.clients import ClientGenerator
 from generators.consultations import ConsultationGenerator
+from generators.rating_types import RatingTypeGenerator
+from generators.ratings import RatingGenerator
 from generators.surveys import SurveyGenerator
 
 class MainGenerator:
@@ -14,6 +16,8 @@ class MainGenerator:
         self.generators['clients'] = ClientGenerator()
         self.generators['consultations'] = ConsultationGenerator()
         self.generators['surveys'] = SurveyGenerator()
+        self.generators['rating_types'] = RatingTypeGenerator()
+        self.generators['ratings'] = RatingGenerator()
         
     def start_generators(self):
         for generator in self.generators.values():

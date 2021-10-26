@@ -6,7 +6,8 @@ class SurveyGenerator:
 
     START_ID = 0
     REWARD_AVAILABLE_RATE = 0.05
-    RATINGS = (1, 5)
+    RATINGS = [1, 2, 3, 4, 5]
+    RATINGS_WEIGHTS = [0.05, 0.2, 0.35, 0.3, 0.1]
 
     class Survey:
 
@@ -39,8 +40,8 @@ class SurveyGenerator:
         for i in range(self._surveys_amount):
             current_id = self.current_id
             reward_available = True if random.uniform(0, 1) < self.REWARD_AVAILABLE_RATE else False
-            consultation = i
-            overall_rating = random.randint(*self.RATINGS)
+            consultation = i+1
+            overall_rating = random.choices(self.RATINGS, self.RATINGS_WEIGHTS)[0]
 
             self._surveys.append(self.Survey(id=current_id,
                                                  reward_available=int(reward_available),
