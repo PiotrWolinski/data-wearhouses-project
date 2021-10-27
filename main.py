@@ -3,6 +3,10 @@ from generators.departments import DepartmentGenerator
 from generators.clients import ClientGenerator
 from generators.consultants import ConsultantGenerator
 from generators.benefits import BenefitGenerator
+from generators.consultations import ConsultationGenerator
+from generators.rating_types import RatingTypeGenerator
+from generators.ratings import RatingGenerator
+from generators.surveys import SurveyGenerator
 
 class MainGenerator:
 
@@ -14,6 +18,10 @@ class MainGenerator:
         self.generators['departments'] = DepartmentGenerator()
         self.generators['clients'] = ClientGenerator()
         self.generators['consultants'] = ConsultantGenerator()
+        self.generators['consultations'] = ConsultationGenerator()
+        self.generators['surveys'] = SurveyGenerator()
+        self.generators['rating_types'] = RatingTypeGenerator()
+        self.generators['ratings'] = RatingGenerator()
         
         # Benefits generator is not with others, because he needs params and is dependant
         self.benefits_generator = BenefitGenerator()

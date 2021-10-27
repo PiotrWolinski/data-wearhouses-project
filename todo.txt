@@ -1,0 +1,2 @@
+---naprawić żeby konsultacje nie były możliwe jeśli konsultant nie pracował już w danym czasie
+---naprawić żeby ankieta dotycząca konsultacji w oddziale stacjonarnym nie miała oceny jakości połączenia
