@@ -2,20 +2,25 @@ import os
 from generators.departments import DepartmentGenerator
 from generators.clients import ClientGenerator
 from generators.consultants import ConsultantGenerator
+from generators.benefits import BenefitsGenerator
 
 class MainGenerator:
 
     def __init__(self):
         self.generators = {}
+        self._contracts_issue_dates = []
 
     def init_generators(self):
         self.generators['departments'] = DepartmentGenerator()
         self.generators['clients'] = ClientGenerator()
         self.generators['consultants'] = ConsultantGenerator()
+        self.benefits_generator = BenefitsGenerator()
         
     def start_generators(self):
         for generator in self.generators.values():
             generator.generate()
+
+        self.benefits_generator.generate()
 
     def save_to_bulks(self):
         if not os.path.exists('bulks'):
