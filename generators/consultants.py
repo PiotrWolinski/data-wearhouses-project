@@ -15,6 +15,10 @@ class ConsultantGenerator:
     EMPLOYMENT_RATE = 0.9
     CONSULTANTS_AMOUNT = 1500
     TOTAL_WORKERS = 5000
+    BIRTH_DATE_LOWER_LIMIT = datetime.date(1950, 1, 1)
+    BIRTH_DATE_UPPER_LIMIT = datetime.date(2000, 12, 31)
+    EMPLOYMENT_START_LIMIT = datetime.date(2005, 10, 24)
+    EMPLOYMENT_FINISH_LIMIT = datetime.date(2021, 10, 24)
 
     def __init__(self, consultants_amount=1500, start_id=None):
         self._current_id = start_id if start_id else self.START_ID
@@ -88,61 +92,64 @@ class ConsultantGenerator:
         with codecs.open(f'{current_path}/bulks/consultants.bulk', 'w', 'utf-8-sig') as file:
             for consultant in self._consultants:
                 file.write(f'{consultant}\n')
+    
+    def generate_employment_dates(self):
+        return self._employment_dates
 
     def export_to_csv(self):
 
-        def get_random_birth_date():
-            first_day = datetime.date(1950, 1, 1)
-            last_day = datetime.date(2000, 12, 31)
+        def get_random_date(_first_day, _last_day):
+            first_day = _first_day
+            last_day = _last_day
 
-            time_between_dates = last_day - first_day
-            days_between_dates = time_between_dates.days
-            random_number_of_days = random.randrange(days_between_dates)
-            random_date = first_day + datetime.timedelta(days=random_number_of_days)
-
-            return random_date
-
-        def get_random_sign_date():
-            first_day = datetime.date(2005, 10, 24)
-            last_day = datetime.date(2021, 10, 24)
-
-            time_between_dates = last_day - first_day
-            days_between_dates = time_between_dates.days
+            days_between_dates = (last_day - first_day).days
+            
             random_number_of_days = random.randrange(days_between_dates)
             random_date = first_day + datetime.timedelta(days=random_number_of_days)
 
             return random_date
 
         def define_employment(start_date):
-            fired = True if random.uniform(0, 1) > self.EMPLOYMENT_RATE else False
+            fired = random.uniform(0, 1) > self.EMPLOYMENT_RATE
 
-            if fired and (datetime.date(2021, 10, 24) - start_date).days > 30:
+            if fired and (self.EMPLOYMENT_FINISH_LIMIT - start_date).days > 30:
                 correct_date = False
-                end_date = start_date
-
-                while not correct_date:
-                    end_date = get_random_sign_date()
+                end_date = None
+                attempts = 10
+                while not correct_date and attempts:
+                    end_date = get_random_date(start_date, self.EMPLOYMENT_FINISH_LIMIT)
 
                     working_days = (end_date - start_date).days
 
-                    if working_days > 30:
+                    if working_days > 30 and start_date < end_date:
                         correct_date = True
 
-                return end_date
+                    attempts -= 1
+
+                return end_date if attempts != 0 else '-'
 
             return '-'
 
         with open('ceo_excel.csv', mode='w', newline='') as file:
             writer = csv.writer(file, delimiter=',')
 
+            self._employment_dates = []
+
+            writer.writerow(['ID', 'Department', 'Name', 'Surname','Birth date', 'Education', 'Position', 'Salary', 'Date of employment', 'Dismissal date', ])
+
             for consultant in self._consultants:
                 consultant_arr = consultant.to_list()
-                consultant_arr.append(get_random_birth_date())
+
+                start_date = get_random_date(self.EMPLOYMENT_START_LIMIT, self.EMPLOYMENT_FINISH_LIMIT)
+                end_date = define_employment(start_date)
+                self._employment_dates.append((start_date, end_date))
+
+                consultant_arr.append(get_random_date(self.BIRTH_DATE_LOWER_LIMIT, self.BIRTH_DATE_UPPER_LIMIT))
                 consultant_arr.append(random.choice(self.EDUCATION))
                 consultant_arr.append('Consultant')
-                consultant_arr.append(random.uniform(4000, 7000))
-                consultant_arr.append(get_random_sign_date())
-                consultant_arr.append(define_employment(consultant_arr[-1]))
+                consultant_arr.append(f'{random.uniform(4000, 7000):.2f}')
+                consultant_arr.append(start_date)
+                consultant_arr.append(end_date)
                 writer.writerow(consultant_arr)
 
             for _ in range(self._total_workers - self._consultants_amount):
@@ -151,10 +158,10 @@ class ConsultantGenerator:
                 employee_arr.append(random.randint(0, self.DEPARTMENTS_AMOUNT))
                 employee_arr.append(random.choice(self._names))
                 employee_arr.append(random.choice(self._surnames))
-                employee_arr.append(get_random_birth_date())
+                employee_arr.append(get_random_date(self.BIRTH_DATE_LOWER_LIMIT, self.BIRTH_DATE_UPPER_LIMIT))
                 employee_arr.append(random.choice(self.EDUCATION))
                 employee_arr.append(random.choices(self.POSITION, self.POSITION_WEIGHTS)[0])
                 employee_arr.append(random.uniform(4000, 7000))
-                employee_arr.append(get_random_sign_date())
+                employee_arr.append(get_random_date(self.EMPLOYMENT_START_LIMIT, self.EMPLOYMENT_FINISH_LIMIT))
                 employee_arr.append(define_employment(employee_arr[-1]))
                 writer.writerow(employee_arr)
