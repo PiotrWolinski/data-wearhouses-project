@@ -8,23 +8,21 @@ class DepartmentGenerator:
     BUILDING_NUMBER_RANGE = (1, 100)
     CITIES = ['Gdańsk', 'Sopot', 'Gdynia', 'Elbląg', 'Poznań', 'Suchy Las', 'Wrocław', 'Warszawa', 'Kraków']
     STREETS = ['Marszałkowska', 'Grunwaldzka', 'Krótka', 'Mickiewicza', 'Jasna', 'Ciemna', 'Wesoła', 'Słoneczna', 'Deszczowa', 'Długa', 'Bałtycka', 'Ratajczaka']
-    CONSULTANTS_RANGE = (40, 60)
     CALL_CENTER_RATE = 0.9
     class Department:
 
-        def __init__(self, id, street, building_number, city, postal_code, consultants, call_center, show_id=False):
+        def __init__(self, id, street, building_number, city, postal_code, call_center, show_id=False):
             self.id = id
             self.street = street
             self.building_number = building_number
             self.city = city
             self.postal_code = postal_code
-            self.consultants = consultants
             self.call_center = call_center
             self._show_id = show_id
 
         def __str__(self):
             id = f'{self.id if self._show_id else ""}'
-            s = f'{self.street}|{self.building_number}|{self.city}|{self.postal_code}|{self.consultants}|{self.call_center}'
+            s = f'{self.street}|{self.building_number}|{self.city}|{self.postal_code}|{self.call_center}'
             return s if id == '' else f'{id}|{s}'
 
     def __init__(self, departments_amount=15, start_id=None):
@@ -47,7 +45,6 @@ class DepartmentGenerator:
             building_number = random.randint(*self.BUILDING_NUMBER_RANGE)
             city = random.choice(self.CITIES)
             postal_code = f'{random.randint(0,9)}{random.randint(0,9)}-{random.randint(0,9)}{random.randint(0,9)}{random.randint(0,9)}'
-            consultants_amount = random.randint(*self.CONSULTANTS_RANGE)
             call_center = '1' if random.uniform(0, 1) < self.CALL_CENTER_RATE else '0'
 
             self._departments.append(self.Department(id=current_id,
@@ -55,7 +52,6 @@ class DepartmentGenerator:
                                                 building_number=building_number,
                                                 city=city,
                                                 postal_code=postal_code,
-                                                consultants=consultants_amount,
                                                 call_center=call_center))
 
     def print(self):
