@@ -1,1 +1,1 @@
----naprawić żeby konsultacje nie były możliwe jeśli konsultant nie pracował już w danym czasie
+--fix ceo_excel indexing
