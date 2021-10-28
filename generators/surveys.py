@@ -4,14 +4,14 @@ import pathlib
 
 class SurveyGenerator:
 
-    START_ID = 0
+    START_ID = 1
     REWARD_AVAILABLE_RATE = 0.05
     RATINGS = [1, 2, 3, 4, 5]
     RATINGS_WEIGHTS = [0.05, 0.2, 0.35, 0.3, 0.1]
 
     class Survey:
 
-        def __init__(self, id, reward_available, consultation, overall_rating, show_id=False):
+        def __init__(self, id, reward_available, consultation, overall_rating, show_id=True):
             self.id = id
             self.reward_available = reward_available
             self.consultation = consultation

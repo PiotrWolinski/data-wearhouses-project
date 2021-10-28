@@ -5,11 +5,11 @@ import pathlib
     
 class ClientGenerator:
 
-    START_ID = 0
+    START_ID = 1
 
     class Client:
 
-        def __init__(self, id, name, surname, show_id=False):
+        def __init__(self, id, name, surname, show_id=True):
             self.id = id
             self.name = name
             self.surname = surname

@@ -5,7 +5,7 @@ import datetime
 
 class BenefitGenerator:
 
-    START_ID = 0
+    START_ID = 1
     BENEFITS = {
         'Sports Card': {
             'options': ['Multisport', 'FitSport', 'Medicover Sport'],
@@ -50,7 +50,7 @@ class BenefitGenerator:
     MAX_BENEFIT_AMOUNT = 3
     class Benefit:
 
-        def __init__(self, id, benefit_name, benefit_type, start_date, end_date, employer_cost, employee_cost, consultant_id, show_id=False):
+        def __init__(self, id, benefit_name, benefit_type, start_date, end_date, employer_cost, employee_cost, consultant_id, show_id=True):
             self.id = id
             self.benefit_name = benefit_name
             self.benefit_type = benefit_type

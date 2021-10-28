@@ -4,14 +4,14 @@ import pathlib
 
 class DepartmentGenerator:
 
-    START_ID = 0
+    START_ID = 1
     BUILDING_NUMBER_RANGE = (1, 100)
     CITIES = ['Gdańsk', 'Sopot', 'Gdynia', 'Elbląg', 'Poznań', 'Suchy Las', 'Wrocław', 'Warszawa', 'Kraków']
     STREETS = ['Marszałkowska', 'Grunwaldzka', 'Krótka', 'Mickiewicza', 'Jasna', 'Ciemna', 'Wesoła', 'Słoneczna', 'Deszczowa', 'Długa', 'Bałtycka', 'Ratajczaka']
     CALL_CENTER_RATE = 0.9
     class Department:
 
-        def __init__(self, id, street, building_number, city, postal_code, call_center, show_id=False):
+        def __init__(self, id, street, building_number, city, postal_code, call_center, show_id=True):
             self.id = id
             self.street = street
             self.building_number = building_number
