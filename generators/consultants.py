@@ -78,7 +78,7 @@ class ConsultantGenerator:
             surname = random.choice(self._surnames)
 
             self._consultants.append(self.Consultant(id=current_id,
-                                        department=department,
+                                        department=department + 1,
                                         name=name,
                                         surname=surname))
             
