@@ -13,8 +13,8 @@ GO
 CREATE TABLE Client
 (
     ID_Client INTEGER IDENTITY(1,1) PRIMARY KEY,
-    Client_name varchar(30),
-    Client_surname varchar(40),
+    Client_name varchar(100),
+    Client_surname varchar(100),
 )
 GO
 
@@ -25,7 +25,6 @@ CREATE TABLE Department
     Building_number INTEGER,
     City varchar(40),
     Postal_code varchar(6),
-    Consultant_count INTEGER,
     Call_center BIT,
 )
 GO

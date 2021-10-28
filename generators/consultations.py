@@ -5,7 +5,7 @@ import datetime
     
 class ConsultationGenerator:
 
-    START_ID = 0
+    START_ID = 1
     CONSULTANTS_ID_RANGE = (1, 1500)
     CLIENTS_ID_RANGE = (1, 100_000)
     FIRST_DAY = datetime.date(2020, 10, 24)
@@ -13,7 +13,7 @@ class ConsultationGenerator:
     TOPICS_WEIGHTS = [0.1, 0.8, 0.1]
     class Consultation:
 
-        def __init__(self, id, consultant, client, start_time, end_time, topic, show_id=False):
+        def __init__(self, id, consultant, client, start_time, end_time, topic, show_id=True):
             self.id = id
             self.consultant = consultant
             self.client = client

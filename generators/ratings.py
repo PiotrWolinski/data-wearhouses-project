@@ -4,7 +4,7 @@ import pathlib
 
 class RatingGenerator:
 
-    START_ID = 0
+    START_ID = 1
     RATING_TYPES = ["consultant rating", "solution rating"]
     RATINGS = [1, 2, 3, 4, 5]
     RATING_WEIGHTS = {
@@ -14,7 +14,7 @@ class RatingGenerator:
 
     class Rating:
 
-        def __init__(self, id, survey, rating_type, rating_value, show_id=False):
+        def __init__(self, id, survey, rating_type, rating_value, show_id=True):
             self.id = id
             self.survey = survey
             self.rating_type = rating_type

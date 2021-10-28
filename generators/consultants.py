@@ -7,7 +7,7 @@ import datetime
     
 class ConsultantGenerator:
 
-    START_ID = 0
+    START_ID = 1
     DEPARTMENTS_AMOUNT = 15
     EDUCATION = ['None', 'Bachelor', 'Master', 'Primary', 'Secondary']
     POSITION = ['Assistant', 'Representative', 'IT Support', 'Office assistant', 'Director', 'Receptionist', 'Support assistant', 'Staff assistant', 'Analyst', 'Copywriter']
@@ -32,7 +32,7 @@ class ConsultantGenerator:
 
     class Consultant:
 
-        def __init__(self, id, department, name, surname, show_id=False):
+        def __init__(self, id, department, name, surname, show_id=True):
             self.id = id
             self.department = department
             self.name = name
@@ -78,7 +78,7 @@ class ConsultantGenerator:
             surname = random.choice(self._surnames)
 
             self._consultants.append(self.Consultant(id=current_id,
-                                        department=department,
+                                        department=department + 1,
                                         name=name,
                                         surname=surname))
             
