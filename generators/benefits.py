@@ -120,7 +120,7 @@ class BenefitGenerator:
                                                             end_date=end_date,
                                                             employee_cost=employee_cost,
                                                             employer_cost=employer_cost,
-                                                            consultant_id=consultant_id))
+                                                            consultant_id=consultant_id+1))
 
     def print(self):
         for benefit in self._benefits:
