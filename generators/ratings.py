@@ -11,6 +11,7 @@ class RatingGenerator:
         "consultant rating": [0.05, 0.15, 0.4, 0.35, 0.05],
         "solution rating": [0.2, 0.1, 0.3, 0.2, 0.2]
     }
+    RATINGS_AMOUNT = 600_000
 
     class Rating:
 
@@ -26,7 +27,7 @@ class RatingGenerator:
             s = f'{self.survey}|{self.rating_type}|{self.rating_value}'
             return s if id == '' else f'{id}|{s}'
 
-    def __init__(self, surveys_amount=600_000, start_id=None):
+    def __init__(self, surveys_amount=RATINGS_AMOUNT, start_id=None):
         self._current_id = start_id if start_id else self.START_ID
         self._surveys_amount = surveys_amount
         self._ratings = []

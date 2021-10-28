@@ -20,7 +20,7 @@ class ConsultantGenerator:
     EMPLOYMENT_START_LIMIT = datetime.date(2005, 10, 24)
     EMPLOYMENT_FINISH_LIMIT = datetime.date(2021, 10, 24)
 
-    def __init__(self, consultants_amount=1500, start_id=None):
+    def __init__(self, consultants_amount=CONSULTANTS_AMOUNT, start_id=None):
         self._current_id = start_id if start_id else self.START_ID
         self._consultants_amount = consultants_amount
         self._consultants = []
@@ -73,12 +73,12 @@ class ConsultantGenerator:
 
         for _ in range(self._consultants_amount):
             current_id = self.current_id
-            department = random.randint(0, self.DEPARTMENTS_AMOUNT)
+            department = random.randint(1, self.DEPARTMENTS_AMOUNT)
             name = random.choice(self._names)
             surname = random.choice(self._surnames)
 
             self._consultants.append(self.Consultant(id=current_id,
-                                        department=department + 1,
+                                        department=department,
                                         name=name,
                                         surname=surname))
             

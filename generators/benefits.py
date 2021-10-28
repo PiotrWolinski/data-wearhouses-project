@@ -94,7 +94,7 @@ class BenefitGenerator:
         self._contracts_issue_dates = contracts_issue_dates
         self._benefits = []
 
-        for consultant_id in range(self._consultants_amount):
+        for consultant_id in range(1, self._consultants_amount + 1):
             benefit = random.uniform(0, 1) < self.BENEFIT_RATE
             
             if benefit:
@@ -120,7 +120,7 @@ class BenefitGenerator:
                                                             end_date=end_date,
                                                             employee_cost=employee_cost,
                                                             employer_cost=employer_cost,
-                                                            consultant_id=consultant_id+1))
+                                                            consultant_id=consultant_id))
 
     def print(self):
         for benefit in self._benefits:

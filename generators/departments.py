@@ -9,6 +9,7 @@ class DepartmentGenerator:
     CITIES = ['Gdańsk', 'Sopot', 'Gdynia', 'Elbląg', 'Poznań', 'Suchy Las', 'Wrocław', 'Warszawa', 'Kraków']
     STREETS = ['Marszałkowska', 'Grunwaldzka', 'Krótka', 'Mickiewicza', 'Jasna', 'Ciemna', 'Wesoła', 'Słoneczna', 'Deszczowa', 'Długa', 'Bałtycka', 'Ratajczaka']
     CALL_CENTER_RATE = 0.9
+    DEPARTMENTS_AMOUNT = 15
     class Department:
 
         def __init__(self, id, street, building_number, city, postal_code, call_center, show_id=True):
@@ -25,7 +26,7 @@ class DepartmentGenerator:
             s = f'{self.street}|{self.building_number}|{self.city}|{self.postal_code}|{self.call_center}'
             return s if id == '' else f'{id}|{s}'
 
-    def __init__(self, departments_amount=15, start_id=None):
+    def __init__(self, departments_amount=DEPARTMENTS_AMOUNT, start_id=None):
         self._current_id = start_id if start_id else self.START_ID
         self._departments_amount = departments_amount
         self._departments = []

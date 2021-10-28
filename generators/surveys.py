@@ -8,6 +8,7 @@ class SurveyGenerator:
     REWARD_AVAILABLE_RATE = 0.05
     RATINGS = [1, 2, 3, 4, 5]
     RATINGS_WEIGHTS = [0.05, 0.2, 0.35, 0.3, 0.1]
+    SURVEYS_AMOUNT = 600_000
 
     class Survey:
 
@@ -23,7 +24,7 @@ class SurveyGenerator:
             s = f'{self.reward_available}|{self.consultation}|{self.overall_rating}'
             return s if id == '' else f'{id}|{s}'
 
-    def __init__(self, surveys_amount=600_000, start_id=None):
+    def __init__(self, surveys_amount=SURVEYS_AMOUNT, start_id=None):
         self._current_id = start_id if start_id else self.START_ID
         self._surveys_amount = surveys_amount
         self._surveys = []
