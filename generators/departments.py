@@ -48,7 +48,7 @@ class DepartmentGenerator:
             city = random.choice(self.CITIES)
             postal_code = f'{random.randint(0,9)}{random.randint(0,9)}-{random.randint(0,9)}{random.randint(0,9)}{random.randint(0,9)}'
             consultants_amount = random.randint(*self.CONSULTANTS_RANGE)
-            call_center = True if random.uniform(0, 1) < self.CALL_CENTER_RATE else False
+            call_center = '1' if random.uniform(0, 1) < self.CALL_CENTER_RATE else '0'
 
             self._departments.append(self.Department(id=current_id,
                                                 street=street,
