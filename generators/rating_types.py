@@ -4,7 +4,7 @@ import pathlib
 class RatingTypeGenerator:
 
     START_ID = 0
-    RATING_TYPES = ["consultant rating", "connection rating", "solution rating"]
+    RATING_TYPES = ["consultant rating", "solution rating"]
 
     class RatingType:
 
