@@ -1,3 +1,4 @@
+USE Talk2Us
 
 SELECT * FROM dbo.Client
 
