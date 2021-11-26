@@ -1,0 +1,4 @@
+USE agencyDW
+GO
+
+SELECT * FROM Junk

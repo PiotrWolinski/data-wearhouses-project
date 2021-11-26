@@ -22,6 +22,6 @@ with open(FILE_NAME, 'a+') as sql_file:
     current_date = START_DATE
     while current_date <= END_DATE:
         if current_date.weekday() not in [5,6]:
-            sql_file.write(f'INSERT INTO dbo.{DIMENSION_NAME} values({id},\'{current_date}\',{current_date.year},{current_date.strftime("%B")},{current_date.month},{current_date.strftime("%A")},{current_date.weekday()+1});\n')
+            sql_file.write(f'INSERT INTO dbo.{DIMENSION_NAME} values({id},\'{current_date}\',{current_date.year},\'{current_date.strftime("%B")}\',{current_date.month},\'{current_date.strftime("%A")}\',{current_date.weekday()+1});\n')
+            id += 1
         current_date += datetime.timedelta(days=1)
-        id += 1

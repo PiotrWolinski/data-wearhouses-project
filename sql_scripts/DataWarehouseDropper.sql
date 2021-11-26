@@ -1,0 +1,10 @@
+USE agencyDW
+GO
+
+DROP TABLE Consultation
+DROP TABLE Consultant
+DROP TABLE Department
+DROP TABLE Client
+DROP TABLE Date
+DROP TABLE Time
+DROP TABLE Junk

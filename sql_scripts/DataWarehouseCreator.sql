@@ -81,4 +81,3 @@ CREATE TABLE Time
 	Second INTEGER check (Second >= 0 AND Second <= 60),
 )
 GO
-

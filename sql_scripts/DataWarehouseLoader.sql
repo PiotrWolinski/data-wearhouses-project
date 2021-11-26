@@ -100,5 +100,3 @@ INSERT INTO Consultation (FK_Consultant, FK_Client, FK_Data, FK_StartTime, FK_En
 VALUES (7, 7, 3, 9, 10, 1, 5, 4, 293, Null);
 INSERT INTO Consultation (FK_Consultant, FK_Client, FK_Data, FK_StartTime, FK_EndTime, FK_Junk, ConsultantRating, GeneralRating, Duration, ID_Survey)
 VALUES (7, 8, 1, 10, 1, 2, 2, 2, 127, Null);
-
-SELECT * FROM Consultation
