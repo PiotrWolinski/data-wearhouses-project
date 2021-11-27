@@ -47,7 +47,7 @@ class ConsultationGenerator:
             consultant = -1
             while consultant == -1:
                 random_consultant = random.randint(*self.CONSULTANTS_ID_RANGE)
-                if self._contracts_issue_dates[random_consultant - 1][1] == '-':
+                if self._contracts_issue_dates[random_consultant - 1][1] == '':
                     consultant = random_consultant
                 elif self._contracts_issue_dates[random_consultant - 1][1] > self.FIRST_DAY:
                     chance = (self._contracts_issue_dates[random_consultant - 1][1] - self.FIRST_DAY).days / 360

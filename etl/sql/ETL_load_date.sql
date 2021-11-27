@@ -261,3 +261,5 @@ INSERT INTO dbo.Date values(257,'2021-10-19',2021,'October',10,'Tuesday',2);
 INSERT INTO dbo.Date values(258,'2021-10-20',2021,'October',10,'Wednesday',3);
 INSERT INTO dbo.Date values(259,'2021-10-21',2021,'October',10,'Thursday',4);
 INSERT INTO dbo.Date values(260,'2021-10-22',2021,'October',10,'Friday',5);
+INSERT INTO dbo.Date values(261,'2021-10-25',2021,'October',10,'Monday',1);
+INSERT INTO dbo.Date values(262,'2021-10-26',2021,'October',10,'Tuesday',2);

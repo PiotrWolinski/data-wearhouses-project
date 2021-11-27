@@ -3,7 +3,7 @@ import pathlib
 import datetime
 
 START_DATE = datetime.date(2020, 10, 24)
-END_DATE = datetime.date(2021, 10, 24)
+END_DATE = datetime.date(2021, 10, 26)
 FILE_NAME = f'{pathlib.Path().resolve()}\etl\sql\ETL_load_date.sql'
 DW_NAME = 'agencyDW'
 DIMENSION_NAME = 'Date'

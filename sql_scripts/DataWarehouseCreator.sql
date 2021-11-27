@@ -5,7 +5,8 @@ GO
 
 CREATE TABLE Department
 (
-	ID_Department INTEGER PRIMARY KEY,
+	ID_Department INTEGER IDENTITY(1,1) PRIMARY KEY,
+	BK_Department INTEGER,
 	CallCenter BIT,
 	Street varchar(100),
 	Building_number INTEGER,
@@ -16,7 +17,7 @@ GO
 
 CREATE TABLE Consultant
 (
-	ID_Consultant INTEGER PRIMARY KEY,
+	ID_Consultant INTEGER IDENTITY(1,1) PRIMARY KEY,
 	BK_Consultant INTEGER,
 	FK_DEPARTMENT INTEGER FOREIGN KEY REFERENCES Department,
 	Name varchar(30),
@@ -26,23 +27,16 @@ CREATE TABLE Consultant
 	DateCreation date,
 	DateDelete date,
 	BenefitsAmount varchar(10) check(BenefitsAmount IN ('0','1-2','3-4','>4')),
-	EmployeeCost varchar(20) check(EmployeeCost IN ('Less than 4000','Less than 5000','Less than 7500','Less than 9000','More than 9000')),
+	EmployerCost varchar(20) check(EmployerCost IN ('Less than 4000','Less than 5000','Less than 7500','Less than 9000','More than 9000')),
 )
 GO
 
-CREATE TABLE Consultation
+CREATE TABLE Client
 (
-	FK_Consultant INTEGER FOREIGN KEY REFERENCES Consultant,
-	FK_Client INTEGER FOREIGN KEY REFERENCES Client,
-	FK_Data INTEGER FOREIGN KEY REFERENCES Date,
-	FK_StartTime INTEGER FOREIGN KEY REFERENCES Time,
-	FK_EndTime INTEGER FOREIGN KEY REFERENCES Time,
-	FK_Junk INTEGER FOREIGN KEY REFERENCES Junk,
-	ConsultantRating INTEGER check(ConsultantRating >= 1 AND ConsultantRating <= 5),
-	GeneralRating INTEGER check(GeneralRating >= 1 AND GeneralRating <= 5),
-	Duration INTEGER check(Duration > 0 AND Duration <= 60 * 60 * 8),
-	ID_Survey INTEGER,
-	PRIMARY KEY(FK_Consultant, FK_Client, FK_Data, FK_StartTime, FK_EndTime, FK_Junk)
+	ID_Client INTEGER IDENTITY(1,1) PRIMARY KEY,
+	BK_Client INTEGER,
+	Name varchar(30),
+	Surname varchar(40),
 )
 GO
 
@@ -50,14 +44,6 @@ CREATE TABLE Junk
 (
 	ID_Junk INTEGER PRIMARY KEY,
 	Duration varchar(50) check(Duration IN ('Less than 5 minutes','5-10 minutes','10-20 minutes','20-30 minutes','More than 30 minutes')),
-)
-GO
-
-CREATE TABLE Client
-(
-	ID_Client INTEGER PRIMARY KEY,
-	Name varchar(30),
-	Surname varchar(40),
 )
 GO
 
@@ -79,5 +65,21 @@ CREATE TABLE Time
 	Hour INTEGER check (Hour >= 0 AND Hour <= 23),
 	Minute INTEGER check (Minute >= 0 AND Minute <= 60),
 	Second INTEGER check (Second >= 0 AND Second <= 60),
+)
+GO
+
+CREATE TABLE Consultation
+(
+	FK_Consultant INTEGER FOREIGN KEY REFERENCES Consultant,
+	FK_Client INTEGER FOREIGN KEY REFERENCES Client,
+	FK_Data INTEGER FOREIGN KEY REFERENCES Date,
+	FK_StartTime INTEGER FOREIGN KEY REFERENCES Time,
+	FK_EndTime INTEGER FOREIGN KEY REFERENCES Time,
+	FK_Junk INTEGER FOREIGN KEY REFERENCES Junk,
+	ConsultantRating INTEGER check(ConsultantRating >= 1 AND ConsultantRating <= 5),
+	GeneralRating INTEGER check(GeneralRating >= 1 AND GeneralRating <= 5),
+	Duration INTEGER check(Duration > 0 AND Duration <= 60 * 60 * 8),
+	ID_Survey INTEGER,
+	PRIMARY KEY(FK_Consultant, FK_Client, FK_Data, FK_StartTime, FK_EndTime, FK_Junk)
 )
 GO

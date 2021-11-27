@@ -1,4 +1,4 @@
 USE agencyDW
 GO
 
-SELECT * FROM Junk
+SELECT * FROM Consultant

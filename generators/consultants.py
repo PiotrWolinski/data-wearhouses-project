@@ -41,7 +41,7 @@ class ConsultantGenerator:
 
         def to_list(self):
             arr = []
-            arr.append(self.id + 1)
+            arr.append(self.id)
             arr.append(self.department)
             arr.append(self.name)
             arr.append(self.surname)
@@ -126,9 +126,9 @@ class ConsultantGenerator:
 
                     attempts -= 1
 
-                return end_date if attempts != 0 else '-'
+                return end_date if attempts != 0 else ''
 
-            return '-'
+            return ''
 
         with open('ceo_excel.csv', mode='w', newline='') as file:
             writer = csv.writer(file, delimiter=',')
@@ -154,7 +154,7 @@ class ConsultantGenerator:
 
             for _ in range(self._total_workers - self._consultants_amount):
                 employee_arr = []
-                employee_arr.append(self.current_id + 1)
+                employee_arr.append(self.current_id)
                 employee_arr.append(random.randint(0, self.DEPARTMENTS_AMOUNT))
                 employee_arr.append(random.choice(self._names))
                 employee_arr.append(random.choice(self._surnames))

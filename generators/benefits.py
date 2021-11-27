@@ -80,7 +80,7 @@ class BenefitGenerator:
 
     def get_random_date_between(self, _first_day, _last_day):
         first_day = _first_day
-        last_day =  _last_day if type(_last_day) == datetime.date else datetime.date(2021, 10, 24)
+        last_day =  _last_day if type(_last_day) == datetime.date else datetime.date(2023, 1, 31)
 
         time_between_dates = last_day - first_day
         days_between_dates =  time_between_dates.days if int(time_between_dates.days) > 0 else 1
